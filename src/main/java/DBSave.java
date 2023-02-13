@@ -12,13 +12,11 @@ public class DBSave
         Connection conn = DBConnectionUtil.getConnection();
         try
         {
-            for(int i = 0; i < AllResult.size(); i++)
+            for(List<AnimationInfoDTO> infoDTOs : AllResult)
             {
-                for(int j = 0; j < AllResult.get(i).size(); j++)
+                for(AnimationInfoDTO infoDTO : infoDTOs)
                 {
-                    AnimationInfoDTO infoDTO = AllResult.get(i).get(j);
-                    String dbName = "ANIME_" + (2011 + i);
-                    String sql = "insert into " + dbName + "(title, thumb, originaltitle, director, production, genre, classification, airingdate, grade, episodes) values(?,?,?,?,?,?,?,?,?,?)";
+                    String sql = "insert into ANIME(title, thumb, originaltitle, director, production, genre, classification, airingyear, airingdate, grade, episodes) values(?,?,?,?,?,?,?,?,?,?,?)";
                     PreparedStatement pstmt = conn.prepareStatement(sql);
                     pstmt.setString(1, infoDTO.getTitle());
                     pstmt.setString(2, infoDTO.getThumb());
@@ -27,9 +25,10 @@ public class DBSave
                     pstmt.setString(5, infoDTO.getProduction());
                     pstmt.setString(6, infoDTO.getGenre());
                     pstmt.setString(7, infoDTO.getClassification());
-                    pstmt.setString(8, infoDTO.getAiringDate());
-                    pstmt.setString(9, infoDTO.getGrade());
-                    pstmt.setString(10, infoDTO.getEpisodes());
+                    pstmt.setInt(8, infoDTO.getAiringYear());
+                    pstmt.setString(9, infoDTO.getAiringDate());
+                    pstmt.setString(10, infoDTO.getGrade());
+                    pstmt.setString(11, infoDTO.getEpisodes());
                     pstmt.executeUpdate();
                 }
             }

@@ -14,6 +14,7 @@ public class AnimationInfoDTO
     private String production;
     private String genre;
     private String classification;
+    private int airingYear;
     private String airingDate;
     private String grade;
     private String episodes;

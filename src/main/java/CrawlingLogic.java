@@ -8,7 +8,7 @@ import java.util.*;
 
 public class CrawlingLogic
 {
-    public List<AnimationInfoDTO> getList(String year) throws IOException
+    public List<AnimationInfoDTO> getList(int year) throws IOException
     {
         List<AnimationInfoDTO> list = new ArrayList<>();
         AnimationInfoDTO infoDTO;
@@ -81,6 +81,7 @@ public class CrawlingLogic
                 infoDTO.setProduction(map.get("제작사"));
                 infoDTO.setGenre(map.get("장르"));
                 infoDTO.setClassification(map.get("분류"));
+                infoDTO.setAiringYear(year);
                 infoDTO.setAiringDate(map.get("방영일"));
                 infoDTO.setGrade(map.get("등급"));
                 infoDTO.setEpisodes(titles_Epi.get(title.text()));
